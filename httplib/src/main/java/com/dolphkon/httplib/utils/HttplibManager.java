@@ -19,7 +19,7 @@ import com.orhanobut.logger.PrettyFormatStrategy;
  * Description:TODO
  * *****************************************************
  */
-public class HttplibConfig {
+public class HttplibManager {
 private static Context mContext;
     public static void init(Context context) {
         mContext = context.getApplicationContext();

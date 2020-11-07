@@ -1,12 +1,8 @@
 package com.dolphkon.wanandroidclient.net;
 
-import com.dolphkon.httplib.utils.HttplibConfig;
 import com.google.gson.Gson;
-
 import java.util.concurrent.TimeUnit;
-
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -34,7 +30,6 @@ public class RetrofitClient {
         okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .addInterceptor(new DataEncryptInterceptor())
-//                .addInterceptor(new NetWorkDetectedInterceptor(HttplibConfig.getContext()))    //网络拦截器，如果没网抛出异常
                 .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .build();

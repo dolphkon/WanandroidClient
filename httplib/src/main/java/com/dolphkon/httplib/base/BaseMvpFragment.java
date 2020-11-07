@@ -4,8 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import com.dolphkon.httplib.BaseView;
-
 /**
  * ****************************************************
  * Project: WanandroidClient

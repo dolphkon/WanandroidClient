@@ -43,7 +43,6 @@ public class ShowLoadingTramsformer<T> implements ObservableTransformer<T, T> {
         return upstream.doOnSubscribe(new Consumer<Disposable>() {
             @Override
             public void accept(Disposable disposable) throws Exception {
-                LogUtil.d("thread:"+Thread.currentThread().getName());
                showProgressDialog(message);
             }
         }).doFinally(new Action() {

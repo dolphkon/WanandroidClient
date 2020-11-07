@@ -1,6 +1,6 @@
 package com.dolphkon.wanandroidclient.ui;
 
-import com.dolphkon.httplib.BaseView;
+import com.dolphkon.httplib.base.BaseView;
 import com.dolphkon.httplib.base.IPresenter;
 
 /**

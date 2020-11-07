@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.dolphkon.httplib.utils.LoadingDialog;
-import com.dolphkon.httplib.utils.ProgressListener;
+import com.dolphkon.httplib.callback.ProgressListener;
 
 /**
  * ****************************************************

@@ -14,7 +14,7 @@ import java.io.Serializable;
  * Description:TODO
  * *****************************************************
  */
-public class BaseResponse implements Serializable {
+public class BaseResponse{
 
     private String errorCode;
     private String errorMsg;

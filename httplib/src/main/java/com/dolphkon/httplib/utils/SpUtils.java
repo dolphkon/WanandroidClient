@@ -10,7 +10,7 @@ import android.preference.PreferenceManager;
  * */
 
 public class SpUtils {
-    public static Context context = HttplibConfig.getContext();
+    public static Context context = HttplibManager.getContext();
 
 
     public static String getPrefString(String key, final String defaultValue) {

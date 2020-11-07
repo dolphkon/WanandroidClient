@@ -43,7 +43,7 @@ public class ToastUtils {
             }
             handler.removeCallbacks(runnable);
             if (toast == null) {
-                toast = Toast.makeText(HttplibConfig.getContext(), str, Toast.LENGTH_LONG);
+                toast = Toast.makeText(HttplibManager.getContext(), str, Toast.LENGTH_LONG);
                 toast.setText(str);
             } else {
                 toast.setText(str);
@@ -56,6 +56,6 @@ public class ToastUtils {
     }
 
     public static void showToast(int strId) {
-        showToast(HttplibConfig.getContext().getString(strId));
+        showToast(HttplibManager.getContext().getString(strId));
     }
 }

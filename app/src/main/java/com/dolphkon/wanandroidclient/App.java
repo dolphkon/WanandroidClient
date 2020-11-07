@@ -3,7 +3,7 @@ package com.dolphkon.wanandroidclient;
 import android.app.Application;
 import android.content.Context;
 
-import com.dolphkon.httplib.utils.HttplibConfig;
+import com.dolphkon.httplib.utils.HttplibManager;
 
 
 /**
@@ -23,7 +23,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         mContext=this;
-        HttplibConfig.init(this);
+        HttplibManager.init(this);
 
 
 

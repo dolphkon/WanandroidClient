@@ -1,7 +1,5 @@
 package com.dolphkon.httplib.base;
 
-import com.dolphkon.httplib.BaseView;
-
 /**
  * ****************************************************
  * Project: WanandroidClient

@@ -1,7 +1,6 @@
 package com.dolphkon.httplib.base;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
-import com.dolphkon.httplib.BaseView;
 
 /**
  * ****************************************************
