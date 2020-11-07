@@ -2,6 +2,7 @@ package com.dolphkon.httplib.consumer;
 
 import com.dolphkon.httplib.base.BaseResponse;
 import com.dolphkon.httplib.callback.NetCallBack;
+import com.dolphkon.httplib.error.ErrorCode;
 import com.dolphkon.httplib.error.ExceptionHandle;
 import com.dolphkon.httplib.error.RxException;
 import com.dolphkon.httplib.utils.GsonUtil;
@@ -30,7 +31,7 @@ public abstract class CommonObserver<T> implements Observer<ResponseBody>, NetCa
     @Override
     public void onSubscribe(Disposable d){
         if (!HttplibManager.isNetworkAvailable(HttplibManager.getContext())) {
-            RxException ex = new RxException(ExceptionHandle.ERROR.NETWORD_ERROR);
+            RxException ex = new RxException(ErrorCode.NETWORD_ERROR);
             ex.message = "网络不可用,请检查网络设置是否正常";
             onError(ex);
             onComplete();
@@ -88,9 +89,9 @@ public abstract class CommonObserver<T> implements Observer<ResponseBody>, NetCa
      */
     public void onError(RxException e) {
         if (e != null) {
-            onError(e.message, e.errorCode);
+            onError(e.message, e.errorCode+"");
         } else {
-            onError("未知错误", ExceptionHandle.ERROR.UNKNOWN + "");
+            onError("未知错误", ErrorCode.UNKNOWN + "");
         }
 
     }

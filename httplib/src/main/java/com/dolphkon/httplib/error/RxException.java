@@ -9,7 +9,7 @@ import java.io.IOException;
  * ****************************************************
  * Project: WanandroidClient
  * PackageName: com.dolphkon.httplib.error
- * ClassName：JLException
+ * ClassName：RxException
  * Author: kongdexi
  * Date: 2020/11/4 14:10
  * Description:TODO

@@ -1,5 +1,7 @@
 package com.dolphkon.httplib.error;
 import android.net.ParseException;
+
+import com.dolphkon.httplib.BuildConfig;
 import com.dolphkon.httplib.utils.LogUtil;
 import com.google.gson.JsonParseException;
 import org.apache.http.conn.ConnectTimeoutException;
@@ -14,7 +16,7 @@ import retrofit2.HttpException;
  * ****************************************************
  * Project: WanandroidClient
  * PackageName: com.dolphkon.httplib.utils
- * ClassName：
+ * ClassName：ExceptionHandle
  * Author: kongdexi
  * Date: 2020/10/14 15:27
  * Description:TODO
@@ -32,11 +34,13 @@ public class ExceptionHandle {
 
     public static RxException handleException(Throwable e) {
         e.printStackTrace();
-        LogUtil.d(errInfo(new Exception(e)));
+        if (BuildConfig.DEBUG){
+            LogUtil.d(errInfo(new Exception(e)));
+        }
         RxException ex;
         if (e instanceof HttpException) {
             HttpException httpException = (HttpException) e;
-            ex = new RxException(e, ERROR.HTTP_ERROR);
+            ex = new RxException(e, ErrorCode.HTTP_ERROR);
             switch (httpException.code()) {
                 case GATEWAY_TIMEOUT:
                 case REQUEST_TIMEOUT:
@@ -57,79 +61,82 @@ public class ExceptionHandle {
         } else if (e instanceof JsonParseException
                 || e instanceof JSONException
                 || e instanceof ParseException) {
-            ex = new RxException(e, ERROR.PARSE_ERROR);
+            ex = new RxException(e, ErrorCode.PARSE_ERROR);
             ex.message = "解析错误";
             return ex;
         } else if (e instanceof ConnectException) {
-            ex = new RxException(e, ERROR.NETWORD_ERROR);
+            ex = new RxException(e, ErrorCode.NETWORD_ERROR);
             ex.message = "网络连接失败";
             return ex;
         } else if (e instanceof javax.net.ssl.SSLHandshakeException) {
-            ex = new RxException(e, ERROR.SSL_ERROR);
+            ex = new RxException(e, ErrorCode.SSL_ERROR);
             ex.message = "证书错误";
             return ex;
         } else if (e instanceof ConnectTimeoutException) {
-            ex = new RxException(e, ERROR.TIMEOUT_ERROR);
+            ex = new RxException(e, ErrorCode.TIMEOUT_ERROR);
             ex.message = "连接超时";
             return ex;
         } else if (e instanceof java.net.SocketTimeoutException) {
-            ex = new RxException(e, ERROR.TIMEOUT_ERROR);
+            ex = new RxException(e, ErrorCode.TIMEOUT_ERROR);
             ex.message = "连接超时";
             return ex;
         } else if (e instanceof java.net.UnknownHostException) {
-            ex = new RxException(e, ERROR.TIMEOUT_ERROR);
+            ex = new RxException(e, ErrorCode.TIMEOUT_ERROR);
             ex.message = "网络错误";
             return ex;
         } else if (e instanceof RxException) {
             return (RxException) e;
         } else {
-            ex = new RxException(e, ERROR.UNKNOWN);
+            ex = new RxException(e, ErrorCode.UNKNOWN);
             ex.message = "处理失败" + e.getClass().getSimpleName();
             return ex;
         }
     }
 
 
+//    /**
+//     * 约定异常
+//     */
+//    public class ERROR {
+//        /**
+//         * 未知错误
+//         */
+//        public static final int UNKNOWN = -1000;
+//        /**
+//         * 解析错误
+//         */
+//        public static final int PARSE_ERROR = -1001;
+//        /**
+//         * 网络错误
+//         */
+//        public static final int NETWORD_ERROR = -1002;
+//        /**
+//         * 协议出错
+//         */
+//        public static final int HTTP_ERROR = -1003;
+//
+//        /**
+//         * 证书出错
+//         */
+//        public static final int SSL_ERROR = -1005;
+//
+//        /**
+//         * 连接超时
+//         */
+//        public static final int TIMEOUT_ERROR = -1006;
+//
+//    }
+
+
     /**
-     * 约定异常
-     */
-    public class ERROR {
-        /**
-         * 未知错误
-         */
-        public static final int UNKNOWN = -1000;
-        /**
-         * 解析错误
-         */
-        public static final int PARSE_ERROR = -1001;
-        /**
-         * 网络错误
-         */
-        public static final int NETWORD_ERROR = -1002;
-        /**
-         * 协议出错
-         */
-        public static final int HTTP_ERROR = -1003;
-
-        /**
-         * 证书出错
-         */
-        public static final int SSL_ERROR = -1005;
-
-        /**
-         * 连接超时
-         */
-        public static final int TIMEOUT_ERROR = -1006;
-
-    }
-
+     *   将出错的栈信息输出到printWriter中
+     * */
     public static String errInfo(Exception e) {
         StringWriter sw = null;
         PrintWriter pw = null;
         try {
             sw = new StringWriter();
             pw = new PrintWriter(sw);
-            // 将出错的栈信息输出到printWriter中
             e.printStackTrace(pw);
             pw.flush();
             sw.flush();
