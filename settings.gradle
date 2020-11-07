@@ -1,0 +1,3 @@
+rootProject.name='WanandroidClient'
+include ':app'
+include ':httplib'

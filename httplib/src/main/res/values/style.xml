@@ -1,0 +1,13 @@
+<resources>
+
+
+    <!--加载中...-->
+    <style name="ProgressDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowBackground">@drawable/gray_conner_shape</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
+
+
+</resources>
