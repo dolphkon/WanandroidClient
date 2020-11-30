@@ -23,12 +23,12 @@ import com.dolphkon.wanandroidclient.net.RetrofitClient;
  * *****************************************************
  */
 public class LoginPresenter extends BasePresenter<LoginContract.View> implements LoginContract.Presenter {
-    private LoginContract.View view;
+    private LoginContract.View mView;
     private Context context;
 
     public LoginPresenter(Context context, LoginContract.View view) {
         this.context = context;
-        this.view = view;
+        this.mView = view;
     }
 
     /**
@@ -40,11 +40,11 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
                 .apiService
                 .register(account, password, repassword)
                 .compose(RxHelper.observableIO2Main(context))
-                .compose(new ShowLoadingTramsformer((Context) view))
+                .compose(new ShowLoadingTramsformer((Context) mView))
                 .subscribe(new CommonObserver<RegisterResp>() {
                     @Override
                     public void onSuccess(RegisterResp data) {
-                        LogUtil.d("response:"+data.data);
+                        mView.updateRegisterView(data);
                     }
 
                     @Override

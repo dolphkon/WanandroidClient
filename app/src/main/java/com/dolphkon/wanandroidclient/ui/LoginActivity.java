@@ -9,6 +9,8 @@ import com.dolphkon.httplib.utils.LoadingDialog;
 import com.dolphkon.httplib.utils.ToastUtils;
 import com.dolphkon.wanandroidclient.ClearEditText;
 import com.dolphkon.wanandroidclient.R;
+import com.dolphkon.wanandroidclient.bean.RegisterResp;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -107,9 +109,11 @@ public class LoginActivity extends BaseMvpActivity<LoginContract.View,LoginContr
         }
         mPresenter.register(account,password,rePassword);
     }
-
+    /***
+     *  注册成功
+     * */
     @Override
-    public void updateRegisterView() {
+    public void updateRegisterView(RegisterResp registerResp) {
 
     }
 }
