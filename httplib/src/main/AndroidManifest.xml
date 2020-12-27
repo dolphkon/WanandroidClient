@@ -2,7 +2,5 @@
     package="com.dolphkon.httplib" >
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
-    <application>
-        <activity android:name=".base.BaseActivity" />
-    </application>
+    <application></application>
 </manifest>
