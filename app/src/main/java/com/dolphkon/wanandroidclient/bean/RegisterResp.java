@@ -2,6 +2,8 @@ package com.dolphkon.wanandroidclient.bean;
 
 import com.dolphkon.httplib.base.BaseResponse;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.List;
 
 /**
@@ -16,6 +18,10 @@ import java.util.List;
  */
 public class RegisterResp extends BaseResponse {
     public DataBean data;
+
+    public RegisterResp(@Nullable String ret_code, @Nullable String ret_msg) {
+        super(ret_code, ret_msg);
+    }
 
     public class DataBean {
         /**

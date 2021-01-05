@@ -1,4 +1,4 @@
-package com.dolphkon.httplib.callback;
+package com.dolphkon.httplib.callback
 
 /**
  * ****************************************************
@@ -10,14 +10,13 @@ package com.dolphkon.httplib.callback;
  * Description:网络结果的回调
  * *****************************************************
  */
-public interface NetCallBack<T> {
+interface NetCallBack<T> {
     /**
      * 成功回调
      *
      * @param data
      */
-    void onSuccess(T data);
-
+    fun onSuccess(data: T)
 
     /**
      * 失败回调
@@ -25,5 +24,5 @@ public interface NetCallBack<T> {
      * @param msg
      * @param code
      */
-    void onError(String msg, String code);
+    fun onError(msg: String?, code: String?)
 }

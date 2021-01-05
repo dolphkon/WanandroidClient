@@ -1,15 +1,16 @@
-package com.dolphkon.httplib;
+package com.dolphkon.httplib.callback
 
 /**
  * ****************************************************
  * Project: WanandroidClient
- * PackageName: com.dolphkon.httplib
+ * PackageName: com.dolphkon.httplib.utils
  * ClassName：
  * Author: kongdexi
- * Date: 2020/10/14 16:42
+ * Date: 2020/10/14 17:07
  * Description:TODO
  * *****************************************************
  */
-public class ResultCode {
-    public static final String CODE_SUCCESS = "0";//成功
+interface ProgressListener {
+    fun showProgress(msg: String?)
+    fun dismissProgress()
 }

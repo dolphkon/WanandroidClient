@@ -70,15 +70,13 @@ abstract class BaseFragment : RxFragment() {
             dialog!!.setCancelable(false)
             dialog!!.setCanceledOnTouchOutside(false)
         }
-        dialog!!.show()
-        if (msg != null) {
-            dialog!!.setMessage(msg)
-        }
+        dialog?.show()
+        if (msg != null) dialog?.setMessage(msg)
     }
 
     fun dismissProgressDialog() {
         if (dialog?.isShowing!!){
-            dialog!!.dismiss()
+            dialog?.dismiss()
         }
 
 
