@@ -4,7 +4,7 @@ import android.view.Window
 import com.dolphkon.httplib.R
 import com.dolphkon.httplib.utils.LoadingDialog
 
-import com.dolphkon.httplib.utils.ToastUtils
+import com.dolphkon.httplib.utils.toast
 import com.gyf.barlibrary.ImmersionBar
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity
 
@@ -32,12 +32,12 @@ abstract class BaseActivity : RxAppCompatActivity() {
     abstract fun initData()
 
     protected open fun toast(strId: Int) {
-        ToastUtils.showToast(strId)
+        strId.toast(this)
     }
 
 
     protected open fun toast(strId: String?) {
-        ToastUtils.showToast(strId)
+        strId?.toast(this)
     }
 
 

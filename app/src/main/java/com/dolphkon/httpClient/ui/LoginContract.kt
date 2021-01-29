@@ -1,5 +1,6 @@
 package com.dolphkon.httpClient.ui
 
+import com.dolphkon.httpClient.bean.RegisterResp.DataBean
 import com.dolphkon.httplib.base.BaseView
 import com.dolphkon.httplib.base.IPresenter
 
@@ -15,10 +16,13 @@ import com.dolphkon.httplib.base.IPresenter
  */
 interface LoginContract {
     interface View : BaseView<Any?> {
-        fun updateRegisterView()
+        fun updateRegisterView( data: DataBean?)
+        fun login()
     }
 
     interface Presenter : IPresenter<View?> {
         fun register(account: String?, password: String?, repassword: String?)
+
+        fun login(account: String?,password: String?)
     }
 }

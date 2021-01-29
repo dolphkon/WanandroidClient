@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import butterknife.ButterKnife
-import butterknife.Unbinder
 import com.dolphkon.httplib.utils.LoadingDialog
-import com.dolphkon.httplib.utils.ToastUtils
+import com.dolphkon.httplib.utils.toast
 import com.trello.rxlifecycle3.components.RxFragment
 
 /**
@@ -36,18 +34,6 @@ abstract class BaseFragment : RxFragment() {
         initData()
     }
 
-    /**
-     * toast
-     *
-     * @param msg
-     */
-    protected fun toast(msg: String?) {
-        ToastUtils.showToast(msg)
-    }
-
-    protected fun toast(strId: Int) {
-        ToastUtils.showToast(strId)
-    }
 
     /**
      * 加载对话框

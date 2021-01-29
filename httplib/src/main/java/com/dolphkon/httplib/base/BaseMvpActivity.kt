@@ -33,13 +33,6 @@ abstract class BaseMvpActivity<V : BaseView<*>?, P : IPresenter<V>?> : BaseActiv
     }
 
     protected abstract fun createPresenter(): P
-    override fun showToast(msg: String?) {
-        toast(msg)
-    }
-
-    override fun showToast(msgId: Int) {
-        toast(msgId)
-    }
 
     override fun showLoading() {
         showProgressDialog()

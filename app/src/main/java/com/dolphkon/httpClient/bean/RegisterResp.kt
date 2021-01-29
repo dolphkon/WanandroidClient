@@ -1,10 +1,6 @@
-package com.dolphkon.httpClient.bean;
+package com.dolphkon.httpClient.bean
 
-import com.dolphkon.httplib.base.BaseResponse;
-
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
+import com.dolphkon.httplib.base.BaseResponse
 
 /**
  * ****************************************************
@@ -16,14 +12,10 @@ import java.util.List;
  * Description:TODO
  * *****************************************************
  */
-public class RegisterResp extends BaseResponse {
-    public DataBean data;
+class RegisterResp(ret_code: String?, ret_msg: String?) : BaseResponse(ret_code, ret_msg) {
+    var data: DataBean? = null
 
-    public RegisterResp(@Nullable String ret_code, @Nullable String ret_msg) {
-        super(ret_code, ret_msg);
-    }
-
-    public class DataBean {
+    inner class DataBean {
         /**
          * admin : false
          * chapterTops : []
@@ -39,23 +31,20 @@ public class RegisterResp extends BaseResponse {
          * type : 0
          * username : hxjdjjd
          */
-
-        public boolean admin;
-        public int coinCount;
-        public String email;
-        public String icon;
-        public int id;
-        public String nickname;
-        public String password;
-        public String publicName;
-        public String token;
-        public int type;
-        public String username;
-        public List<?> chapterTops;
-        public List<?> collectIds;
-
-        @Override
-        public String toString() {
+        var admin = false
+        var coinCount = 0
+        var email: String? = null
+        var icon: String? = null
+        var id = 0
+        var nickname: String? = null
+        var password: String? = null
+        var publicName: String? = null
+        var token: String? = null
+        var type = 0
+        var username: String? = null
+        var chapterTops: List<*>? = null
+        var collectIds: List<*>? = null
+        override fun toString(): String {
             return "DataBean{" +
                     "admin=" + admin +
                     ", coinCount=" + coinCount +
@@ -70,15 +59,12 @@ public class RegisterResp extends BaseResponse {
                     ", username='" + username + '\'' +
                     ", chapterTops=" + chapterTops +
                     ", collectIds=" + collectIds +
-                    '}';
+                    '}'
         }
-
-
     }
 
-    @Override
-    public String toString() {
+    override fun toString(): String {
         return super.toString() + " " +
-                "data=" + data;
+                "data=" + data
     }
 }

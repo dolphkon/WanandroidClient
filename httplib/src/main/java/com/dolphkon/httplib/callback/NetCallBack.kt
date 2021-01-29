@@ -16,7 +16,7 @@ interface NetCallBack<T> {
      *
      * @param data
      */
-    fun onSuccess(data: T)
+    fun onSuccess(data: T?)
 
     /**
      * 失败回调
