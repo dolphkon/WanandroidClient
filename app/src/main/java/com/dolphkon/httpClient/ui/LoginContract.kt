@@ -1,4 +1,4 @@
-package com.dolphkon.wanandroidclient.ui
+package com.dolphkon.httpClient.ui
 
 import com.dolphkon.httplib.base.BaseView
 import com.dolphkon.httplib.base.IPresenter
@@ -6,7 +6,7 @@ import com.dolphkon.httplib.base.IPresenter
 /**
  * ****************************************************
  * Project: WanandroidClient
- * PackageName: com.dolphkon.wanandroidclient.ui
+ * PackageName: com.dolphkon.httpClient.ui
  * ClassName：
  * Author: kongdexi
  * Date: 2020/10/29 11:52

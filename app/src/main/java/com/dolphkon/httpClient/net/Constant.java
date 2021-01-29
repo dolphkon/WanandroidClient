@@ -1,9 +1,9 @@
-package com.dolphkon.wanandroidclient.net;
+package com.dolphkon.httpClient.net;
 
 /**
  * ****************************************************
  * Project: WanandroidClient
- * PackageName: com.dolphkon.wanandroidclient.net
+ * PackageName: com.dolphkon.httpClient.net
  * ClassName：
  * Author: kongdexi
  * Date: 2020/10/29 16:39

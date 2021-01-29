@@ -1,4 +1,4 @@
-package com.dolphkon.wanandroidclient.net;
+package com.dolphkon.httpClient.net;
 
 import com.google.gson.Gson;
 import java.util.concurrent.TimeUnit;
@@ -7,12 +7,12 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.dolphkon.wanandroidclient.net.Constant.BASE_URL;
+import static com.dolphkon.httpClient.net.Constant.BASE_URL;
 
 /**
  * ****************************************************
  * Project: WanandroidClient
- * PackageName: com.dolphkon.wanandroidclient.net
+ * PackageName: com.dolphkon.httpClient.net
  * ClassName：RetrofitClient
  * Author: kongdexi
  * Date: 2020/10/30 9:28

@@ -1,4 +1,4 @@
-package com.dolphkon.wanandroidclient.net;
+package com.dolphkon.httpClient.net;
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.http.Field;
@@ -9,7 +9,7 @@ import retrofit2.http.POST;
 /**
  * ****************************************************
  * Project: WanandroidClient
- * PackageName: com.dolphkon.wanandroidclient.net
+ * PackageName: com.dolphkon.httpClient.net
  * ClassName：ApiService
  * Author: kongdexi
  * Date: 2020/10/29 16:30

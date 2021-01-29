@@ -1,4 +1,4 @@
-package com.dolphkon.wanandroidclient.net;
+package com.dolphkon.httpClient.net;
 
 import com.dolphkon.httplib.utils.LogUtil;
 

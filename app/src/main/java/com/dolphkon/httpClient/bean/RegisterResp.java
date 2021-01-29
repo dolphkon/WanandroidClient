@@ -1,4 +1,4 @@
-package com.dolphkon.wanandroidclient.bean;
+package com.dolphkon.httpClient.bean;
 
 import com.dolphkon.httplib.base.BaseResponse;
 
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * ****************************************************
  * Project: WanandroidClient
- * PackageName: com.dolphkon.wanandroidclient.bean
+ * PackageName: com.dolphkon.httpClient.bean
  * ClassName：
  * Author: kongdexi
  * Date: 2020/11/3 11:26

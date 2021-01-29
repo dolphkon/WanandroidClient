@@ -1,4 +1,4 @@
-package com.dolphkon.wanandroidclient;
+package com.dolphkon.httpClient;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -15,7 +15,7 @@ import androidx.core.content.ContextCompat;
 /**
  * ****************************************************
  * Project: WanandroidClient
- * PackageName: com.dolphkon.wanandroidclient
+ * PackageName: com.dolphkon.httpClient
  * ClassName：
  * Author: kongdexi
  * Date: 2020/10/29 15:11

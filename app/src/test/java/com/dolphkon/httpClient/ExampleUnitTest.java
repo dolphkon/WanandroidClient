@@ -1,4 +1,4 @@
-package com.dolphkon.wanandroidclient;
+package com.dolphkon.httpClient;
 
 import org.junit.Test;
 

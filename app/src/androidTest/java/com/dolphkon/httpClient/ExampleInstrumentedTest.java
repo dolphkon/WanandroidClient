@@ -1,4 +1,4 @@
-package com.dolphkon.wanandroidclient;
+package com.dolphkon.httpClient;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.dolphkon.wanandroidclient", appContext.getPackageName());
+        assertEquals("com.dolphkon.httpClient", appContext.getPackageName());
     }
 }

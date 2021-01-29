@@ -12,8 +12,9 @@ import com.dolphkon.httplib.ResultCode
  * Description:TODO
  * *****************************************************
  */
-open  class BaseResponse(var ret_code: String?, var ret_msg: String? ) {
+open  class BaseResponse(var errorCode: String?, var errorMsg: String? ) {
 
        val isOk: Boolean
-        get() = ResultCode.CODE_SUCCESS == ret_code
+        get() = ResultCode.CODE_SUCCESS == errorCode
+
 }

@@ -1,4 +1,4 @@
-package com.dolphkon.wanandroidclient;
+package com.dolphkon.httpClient;
 
 import android.app.Application;
 import android.content.Context;
@@ -9,7 +9,7 @@ import com.dolphkon.httplib.utils.HttplibManager;
 /**
  * ****************************************************
  * Project: WanandroidClient
- * PackageName: com.dolphkon.wanandroidclient
+ * PackageName: com.dolphkon.httpClient
  * ClassName：
  * Author: kongdexi
  * Date: 2020/10/29 15:41
