@@ -1,4 +1,4 @@
-package com.dolphkon.httpClient.net;
+package com.dolphkon.httpClient.net
 
 /**
  * ****************************************************
@@ -10,7 +10,6 @@ package com.dolphkon.httpClient.net;
  * Description:TODO
  * *****************************************************
  */
-public class Constant {
-    public static final String BASE_URL="https://www.wanandroid.com";
-
+object Constant {
+    const val BASE_URL = "https://www.wanandroid.com"
 }
