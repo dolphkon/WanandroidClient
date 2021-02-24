@@ -1,7 +1,6 @@
 package com.dolphkon.wanandroidclient.ui;
 
 import com.dolphkon.httplib.base.BaseView;
-import com.dolphkon.httplib.base.IPresenter;
 import com.dolphkon.wanandroidclient.bean.RegisterResp;
 
 /**
@@ -17,10 +16,12 @@ import com.dolphkon.wanandroidclient.bean.RegisterResp;
 public interface LoginContract {
    interface View extends BaseView{
     void  updateRegisterView(RegisterResp registerResp);
+    void  login(RegisterResp registerResp);
    }
 
-    interface Presenter extends IPresenter<View> {
+    interface Presenter {
         void  register(String account,String password,String repassword);
+        void  login(String account,String password);
     }
 
 }

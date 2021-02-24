@@ -9,6 +9,7 @@ import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import com.dolphkon.httplib.R;
 import com.dolphkon.httplib.utils.LoadingDialog;
@@ -31,7 +32,7 @@ import butterknife.Unbinder;
  * Description:TODO
  * *****************************************************
  */
-public abstract class BaseActivity extends RxAppCompatActivity {
+public abstract class BaseActivity extends FragmentActivity {
 
     public static LinkedList<Activity> mStackList = new LinkedList<Activity>();
     private Unbinder unbinder;

@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.dolphkon.httplib.utils.LoadingDialog;
 import com.dolphkon.httplib.utils.ToastUtils;
 import com.trello.rxlifecycle3.components.RxFragment;
@@ -21,7 +23,7 @@ import butterknife.Unbinder;
  * Description:TODO
  * *****************************************************
  */
-public abstract class BaseFragment extends RxFragment {
+public abstract class BaseFragment extends Fragment {
     protected abstract void initView();
     protected abstract void initData();
     protected abstract int getResourceId();

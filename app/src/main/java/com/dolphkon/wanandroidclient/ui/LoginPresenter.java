@@ -1,16 +1,16 @@
 package com.dolphkon.wanandroidclient.ui;
-
 import android.content.Context;
-
-import com.dolphkon.httplib.base.BasePresenter;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 import com.dolphkon.httplib.consumer.CommonObserver;
 import com.dolphkon.httplib.utils.RxHelper;
 import com.dolphkon.httplib.base.ShowLoadingTramsformer;
-import com.dolphkon.httplib.utils.LogUtil;
 import com.dolphkon.httplib.utils.ToastUtils;
 import com.dolphkon.wanandroidclient.bean.RegisterResp;
 import com.dolphkon.wanandroidclient.net.RetrofitClient;
-
+import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle;
+import com.trello.rxlifecycle3.LifecycleProvider;
+import java.util.concurrent.TimeUnit;
 
 /**
  * ****************************************************
@@ -22,13 +22,15 @@ import com.dolphkon.wanandroidclient.net.RetrofitClient;
  * Description:TODO
  * *****************************************************
  */
-public class LoginPresenter extends BasePresenter<LoginContract.View> implements LoginContract.Presenter {
+public class LoginPresenter  implements LoginContract.Presenter {
+    private final LifecycleProvider<Lifecycle.Event> mLifecycleProvider;
     private LoginContract.View mView;
     private Context context;
 
     public LoginPresenter(Context context, LoginContract.View view) {
         this.context = context;
         this.mView = view;
+        mLifecycleProvider = AndroidLifecycle.createLifecycleProvider((LifecycleOwner) mView);
     }
 
     /**
@@ -39,8 +41,10 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
         RetrofitClient.get()
                 .apiService
                 .register(account, password, repassword)
+                .delay(5, TimeUnit.SECONDS)
                 .compose(RxHelper.observableIO2Main(context))
                 .compose(new ShowLoadingTramsformer((Context) mView))
+                .compose(mLifecycleProvider.<Long>bindUntilEvent(Lifecycle.Event.ON_DESTROY))
                 .subscribe(new CommonObserver<RegisterResp>() {
                     @Override
                     public void onSuccess(RegisterResp data) {
@@ -53,4 +57,32 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
                     }
                 });
     }
+
+
+    /**
+     *  登陆
+     * */
+    @Override
+    public void login(String account, String password) {
+        RetrofitClient.get()
+                .apiService
+                .login(account, password)
+                .compose(RxHelper.observableIO2Main(context))
+                .compose(new ShowLoadingTramsformer((Context) mView))
+                .compose(mLifecycleProvider.<Long>bindUntilEvent(Lifecycle.Event.ON_DESTROY))
+                .subscribe(new CommonObserver<RegisterResp>() {
+                    @Override
+                    public void onSuccess(RegisterResp data) {
+                        mView.login(data);
+                    }
+
+                    @Override
+                    public void onError(String msg, String code) {
+                        ToastUtils.showToast(msg);
+                    }
+                });
+
+
+    }
+
 }

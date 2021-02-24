@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
  * Description:TODO
  * *****************************************************
  */
-public abstract class BaseMvpFragment<V extends BaseView, P extends IPresenter<V>> extends BaseFragment implements BaseView<P> {
+public abstract class BaseMvpFragment<P> extends BaseFragment implements BaseView<P> {
     private P mPresenter;
 
     @Override
@@ -23,7 +23,6 @@ public abstract class BaseMvpFragment<V extends BaseView, P extends IPresenter<V
         if (mPresenter == null) {
             mPresenter = createPresenter();
         }
-
         if (mPresenter == null) {
             throw new NullPointerException("mPresenter 不能为空!");
         }
@@ -37,7 +36,6 @@ public abstract class BaseMvpFragment<V extends BaseView, P extends IPresenter<V
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mPresenter.detachView();
         mPresenter = null;
     }
 

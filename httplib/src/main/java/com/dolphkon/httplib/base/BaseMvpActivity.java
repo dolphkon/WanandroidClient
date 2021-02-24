@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
  * Description:TODO
  * *****************************************************
  */
-public abstract class BaseMvpActivity<V extends BaseView, P extends IPresenter<V>> extends BaseActivity implements BaseView{
+public abstract class BaseMvpActivity<P> extends BaseActivity implements BaseView{
     public P mPresenter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,16 +23,12 @@ public abstract class BaseMvpActivity<V extends BaseView, P extends IPresenter<V
         if (mPresenter == null) {
             throw new NullPointerException("mPresenter 不能为空!");
         }
-        if(mPresenter != null){
-            mPresenter.attachView((V) this);
-        }
         super.onCreate(savedInstanceState);
     }
 
     @Override
     protected void onDestroy() {
-       mPresenter.detachView();
-       mPresenter=null;
+        mPresenter=null;
         super.onDestroy();
     }
 

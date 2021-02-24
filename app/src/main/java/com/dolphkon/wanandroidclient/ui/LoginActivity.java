@@ -10,7 +10,6 @@ import com.dolphkon.httplib.utils.ToastUtils;
 import com.dolphkon.wanandroidclient.ClearEditText;
 import com.dolphkon.wanandroidclient.R;
 import com.dolphkon.wanandroidclient.bean.RegisterResp;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -24,7 +23,7 @@ import butterknife.OnClick;
  * Description:TODO
  * *****************************************************
  */
-public class LoginActivity extends BaseMvpActivity<LoginContract.View,LoginContract.Presenter> implements LoginContract.View {
+public class LoginActivity extends BaseMvpActivity<LoginContract.Presenter> implements LoginContract.View {
     @BindView(R.id.edit_account)
     ClearEditText editAccount;
     @BindView(R.id.edit_password)
@@ -69,15 +68,12 @@ public class LoginActivity extends BaseMvpActivity<LoginContract.View,LoginContr
         switch (view.getId()) {
             case R.id.btn_login:
                 if (!isLogin) {
-//                    llRepassword.setVisibility(View.GONE);
-//                    isLogin = true;
-//                    btnLogin.setText("登录");
-//                    tvRegister.setVisibility(View.VISIBLE);
                     RegisterVerification();
-
-
                     return;
+
                 }
+                loginVerification();
+
                 break;
             case R.id.tv_register:
                 llRepassword.setVisibility(View.VISIBLE);
@@ -114,6 +110,26 @@ public class LoginActivity extends BaseMvpActivity<LoginContract.View,LoginContr
      * */
     @Override
     public void updateRegisterView(RegisterResp registerResp) {
+        ToastUtils.showToast("注册成功");
+    }
 
+    @Override
+    public void login(RegisterResp registerResp) {
+        ToastUtils.showToast("开始登陆");
+    }
+
+
+    private void loginVerification(){
+        account = editAccount.getText().toString().trim();
+        password = editPassword.getText().toString().trim();
+        if (TextUtils.isEmpty(account)) {
+            ToastUtils.showToast("请输入用户名");
+            return;
+        }
+        if (TextUtils.isEmpty(password)) {
+            ToastUtils.showToast("请输入密码");
+            return;
+        }
+      mPresenter.login(account,password);
     }
 }
