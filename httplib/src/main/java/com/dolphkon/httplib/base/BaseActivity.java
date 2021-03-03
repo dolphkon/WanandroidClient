@@ -1,5 +1,4 @@
 package com.dolphkon.httplib.base;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -8,15 +7,11 @@ import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
-
 import com.dolphkon.httplib.R;
 import com.dolphkon.httplib.utils.LoadingDialog;
 import com.dolphkon.httplib.utils.ToastUtils;
 import com.gyf.barlibrary.ImmersionBar;
-import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import butterknife.ButterKnife;

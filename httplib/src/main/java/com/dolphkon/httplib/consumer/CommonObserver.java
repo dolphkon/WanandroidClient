@@ -1,12 +1,14 @@
 package com.dolphkon.httplib.consumer;
 
 import com.dolphkon.httplib.base.BaseResponse;
+import com.dolphkon.httplib.base.BaseDisposable;
 import com.dolphkon.httplib.callback.NetCallBack;
 import com.dolphkon.httplib.error.ErrorCode;
 import com.dolphkon.httplib.error.ExceptionHandle;
 import com.dolphkon.httplib.error.RxException;
 import com.dolphkon.httplib.utils.GsonUtil;
 import com.dolphkon.httplib.utils.HttplibManager;
+import com.dolphkon.httplib.utils.LogUtil;
 
 import org.json.JSONObject;
 
@@ -110,5 +112,6 @@ public abstract class CommonObserver<T> implements Observer<ResponseBody>, NetCa
         Type type = parameterized.getActualTypeArguments()[0];
         return type;
     }
+
 
 }

@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 
 import com.dolphkon.httplib.utils.LoadingDialog;
 import com.dolphkon.httplib.utils.ToastUtils;
-import com.trello.rxlifecycle3.components.RxFragment;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -34,13 +33,13 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(getResourceId(), null);
         unbinder = ButterKnife.bind(this, mView);
-        initView();
         return mView;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        initView();
         initData();
     }
 

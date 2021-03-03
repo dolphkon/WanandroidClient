@@ -1,6 +1,7 @@
 package com.dolphkon.httplib.base;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+import androidx.core.app.NavUtils;
 
 /**
  * ****************************************************
@@ -12,14 +13,13 @@ import androidx.annotation.Nullable;
  * Description:TODO
  * *****************************************************
  */
-public abstract class BaseMvpActivity<P> extends BaseActivity implements BaseView{
+public abstract class BaseMvpActivity<P extends IDisposable> extends BaseActivity implements BaseView{
     public P mPresenter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         if (mPresenter == null) {
             mPresenter = createPresenter();
         }
-
         if (mPresenter == null) {
             throw new NullPointerException("mPresenter 不能为空!");
         }
@@ -28,11 +28,15 @@ public abstract class BaseMvpActivity<P> extends BaseActivity implements BaseVie
 
     @Override
     protected void onDestroy() {
-        mPresenter=null;
+        dismissProgressDialog();
+        if (mPresenter!= null){
+            mPresenter.unDisposable();
+        }
         super.onDestroy();
     }
 
     protected abstract P createPresenter();
+
 
     @Override
     public void showToast(String msg) {
@@ -63,4 +67,5 @@ public abstract class BaseMvpActivity<P> extends BaseActivity implements BaseVie
     public void hideLoading() {
         dismissProgressDialog();
     }
+
 }

@@ -1,6 +1,7 @@
 package com.dolphkon.wanandroidclient.ui;
 
 import com.dolphkon.httplib.base.BaseView;
+import com.dolphkon.httplib.base.IDisposable;
 import com.dolphkon.wanandroidclient.bean.RegisterResp;
 
 /**
@@ -19,7 +20,7 @@ public interface LoginContract {
     void  login(RegisterResp registerResp);
    }
 
-    interface Presenter {
+    interface Presenter extends IDisposable{
         void  register(String account,String password,String repassword);
         void  login(String account,String password);
     }

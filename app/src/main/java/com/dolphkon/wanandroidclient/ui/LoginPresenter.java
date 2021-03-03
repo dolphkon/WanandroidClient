@@ -1,16 +1,12 @@
 package com.dolphkon.wanandroidclient.ui;
 import android.content.Context;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
+import com.dolphkon.httplib.base.BaseDisposable;
 import com.dolphkon.httplib.consumer.CommonObserver;
 import com.dolphkon.httplib.utils.RxHelper;
 import com.dolphkon.httplib.base.ShowLoadingTramsformer;
 import com.dolphkon.httplib.utils.ToastUtils;
 import com.dolphkon.wanandroidclient.bean.RegisterResp;
 import com.dolphkon.wanandroidclient.net.RetrofitClient;
-import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle;
-import com.trello.rxlifecycle3.LifecycleProvider;
-import java.util.concurrent.TimeUnit;
 
 /**
  * ****************************************************
@@ -22,17 +18,13 @@ import java.util.concurrent.TimeUnit;
  * Description:TODO
  * *****************************************************
  */
-public class LoginPresenter  implements LoginContract.Presenter {
-    private final LifecycleProvider<Lifecycle.Event> mLifecycleProvider;
+public class LoginPresenter extends BaseDisposable implements LoginContract.Presenter {
     private LoginContract.View mView;
     private Context context;
-
     public LoginPresenter(Context context, LoginContract.View view) {
         this.context = context;
         this.mView = view;
-        mLifecycleProvider = AndroidLifecycle.createLifecycleProvider((LifecycleOwner) mView);
     }
-
     /**
      * 注册
      */
@@ -41,10 +33,9 @@ public class LoginPresenter  implements LoginContract.Presenter {
         RetrofitClient.get()
                 .apiService
                 .register(account, password, repassword)
-                .delay(5, TimeUnit.SECONDS)
+                .doOnSubscribe(disposable -> addDisposable(disposable))
                 .compose(RxHelper.observableIO2Main(context))
                 .compose(new ShowLoadingTramsformer((Context) mView))
-                .compose(mLifecycleProvider.<Long>bindUntilEvent(Lifecycle.Event.ON_DESTROY))
                 .subscribe(new CommonObserver<RegisterResp>() {
                     @Override
                     public void onSuccess(RegisterResp data) {
@@ -64,25 +55,24 @@ public class LoginPresenter  implements LoginContract.Presenter {
      * */
     @Override
     public void login(String account, String password) {
+        mView.showLoading();
         RetrofitClient.get()
                 .apiService
                 .login(account, password)
                 .compose(RxHelper.observableIO2Main(context))
-                .compose(new ShowLoadingTramsformer((Context) mView))
-                .compose(mLifecycleProvider.<Long>bindUntilEvent(Lifecycle.Event.ON_DESTROY))
                 .subscribe(new CommonObserver<RegisterResp>() {
                     @Override
                     public void onSuccess(RegisterResp data) {
+                        mView.hideLoading();
                         mView.login(data);
                     }
 
                     @Override
                     public void onError(String msg, String code) {
+                        mView.hideLoading();
                         ToastUtils.showToast(msg);
                     }
                 });
-
-
     }
 
 }

@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
  * Description:TODO
  * *****************************************************
  */
-public abstract class BaseMvpFragment<P> extends BaseFragment implements BaseView<P> {
+public abstract class BaseMvpFragment<P  extends IDisposable> extends BaseFragment implements BaseView {
     private P mPresenter;
 
     @Override
@@ -36,7 +36,11 @@ public abstract class BaseMvpFragment<P> extends BaseFragment implements BaseVie
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mPresenter = null;
+        dismissProgressDialog();
+        if (mPresenter!= null){
+            mPresenter.unDisposable();
+        }
+        mPresenter=null;
     }
 
     protected abstract P createPresenter();

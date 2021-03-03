@@ -5,7 +5,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.dolphkon.httplib.base.BaseMvpActivity;
-import com.dolphkon.httplib.utils.LoadingDialog;
 import com.dolphkon.httplib.utils.ToastUtils;
 import com.dolphkon.wanandroidclient.ClearEditText;
 import com.dolphkon.wanandroidclient.R;
@@ -40,8 +39,6 @@ public class LoginActivity extends BaseMvpActivity<LoginContract.Presenter> impl
     private String account;
     private String password;
     private String rePassword;
-    private LoadingDialog dialog;
-
     @Override
     public void initView() {
 
@@ -49,7 +46,6 @@ public class LoginActivity extends BaseMvpActivity<LoginContract.Presenter> impl
 
     @Override
     public void initData() {
-
     }
 
     @Override
@@ -59,7 +55,7 @@ public class LoginActivity extends BaseMvpActivity<LoginContract.Presenter> impl
 
     @Override
     protected LoginContract.Presenter createPresenter() {
-        return new LoginPresenter(this, this);
+        return new LoginPresenter(this,this);
     }
 
 
@@ -83,8 +79,6 @@ public class LoginActivity extends BaseMvpActivity<LoginContract.Presenter> impl
                 break;
         }
     }
-
-
     private void RegisterVerification(){
         account = editAccount.getText().toString().trim();
         password = editPassword.getText().toString().trim();
@@ -116,6 +110,7 @@ public class LoginActivity extends BaseMvpActivity<LoginContract.Presenter> impl
     @Override
     public void login(RegisterResp registerResp) {
         ToastUtils.showToast("开始登陆");
+
     }
 
 
@@ -130,6 +125,19 @@ public class LoginActivity extends BaseMvpActivity<LoginContract.Presenter> impl
             ToastUtils.showToast("请输入密码");
             return;
         }
-      mPresenter.login(account,password);
+       finish();
+        try {
+            Thread.sleep(3000);
+            mPresenter.login("account",password);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
