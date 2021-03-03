@@ -1,8 +1,8 @@
 package com.dolphkon.wanandroidclient.ui;
 import android.content.Context;
 import com.dolphkon.httplib.base.BaseDisposable;
+import com.dolphkon.httplib.base.CommonObservableTransformer;
 import com.dolphkon.httplib.consumer.CommonObserver;
-import com.dolphkon.httplib.utils.RxHelper;
 import com.dolphkon.httplib.base.ShowLoadingTramsformer;
 import com.dolphkon.httplib.utils.ToastUtils;
 import com.dolphkon.wanandroidclient.bean.RegisterResp;
@@ -34,11 +34,12 @@ public class LoginPresenter extends BaseDisposable implements LoginContract.Pres
                 .apiService
                 .register(account, password, repassword)
                 .doOnSubscribe(disposable -> addDisposable(disposable))
-                .compose(RxHelper.observableIO2Main(context))
                 .compose(new ShowLoadingTramsformer((Context) mView))
+                .compose(CommonObservableTransformer.getTransformer())
                 .subscribe(new CommonObserver<RegisterResp>() {
                     @Override
                     public void onSuccess(RegisterResp data) {
+                        mView.hideLoading();
                         mView.updateRegisterView(data);
                     }
 
@@ -59,7 +60,7 @@ public class LoginPresenter extends BaseDisposable implements LoginContract.Pres
         RetrofitClient.get()
                 .apiService
                 .login(account, password)
-                .compose(RxHelper.observableIO2Main(context))
+                .compose(CommonObservableTransformer.getTransformer())
                 .subscribe(new CommonObserver<RegisterResp>() {
                     @Override
                     public void onSuccess(RegisterResp data) {
