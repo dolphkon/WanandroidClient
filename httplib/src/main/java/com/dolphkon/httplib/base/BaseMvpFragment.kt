@@ -12,7 +12,7 @@ import android.os.Bundle
  * Description:TODO
  * *****************************************************
  */
-abstract class BaseMvpFragment<V : BaseView<*>?, P : IPresenter<V>?> : BaseFragment(), BaseView<P> {
+abstract class BaseMvpFragment< P :BasePresenter> : BaseFragment(), BaseView {
     private var mPresenter: P? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +27,7 @@ abstract class BaseMvpFragment<V : BaseView<*>?, P : IPresenter<V>?> : BaseFragm
 
     override fun onDestroyView() {
         super.onDestroyView()
-        mPresenter!!.detachView()
+        mPresenter!!.unDisposable()
         mPresenter = null
     }
 

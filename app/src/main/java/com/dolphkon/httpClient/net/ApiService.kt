@@ -29,12 +29,12 @@ interface ApiService {
      */
     @FormUrlEncoded
     @POST("user/register")
-    fun register(@Field("username") username: String?, @Field("password") password: String?, @Field("repassword") repassword: String?): Observable<ResponseBody?>?
+    fun register(@Field("username") username: String?, @Field("password") password: String?, @Field("repassword") repassword: String?): Observable<ResponseBody>
 
     /**
      * 登录
      */
     @FormUrlEncoded
     @POST("user/login")
-    fun login(@Field("username") username: String?, @Field("password") password: String?): Observable<ResponseBody?>?
+    fun login(@Field("username") username: String?, @Field("password") password: String?): Observable<ResponseBody>
 }

@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_login.*
  * Description:TODO
  * *****************************************************
  */
-class LoginActivity : BaseMvpActivity<LoginContract.View?, Presenter?>(), LoginContract.View {
+class LoginActivity : BaseMvpActivity<LoginContract.Presenter>(), LoginContract.View {
     private var isLogin = true
     private var account: String? = null
     private var password: String? = null

@@ -12,7 +12,7 @@ import android.os.Bundle
  * Description:TODO
  * *****************************************************
  */
-abstract class BaseMvpActivity<V : BaseView<*>?, P : IPresenter<V>?> : BaseActivity(), BaseView<Any?> {
+abstract class BaseMvpActivity<P : BasePresenter> : BaseActivity(), BaseView {
     @JvmField
     var mPresenter: P? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,12 +22,11 @@ abstract class BaseMvpActivity<V : BaseView<*>?, P : IPresenter<V>?> : BaseActiv
         if (mPresenter == null) {
             throw NullPointerException("mPresenter 不能为空!")
         }
-        mPresenter?.attachView(this as V)
         super.onCreate(savedInstanceState)
     }
 
     override fun onDestroy() {
-        mPresenter!!.detachView()
+        mPresenter?.unDisposable()
         mPresenter = null
         super.onDestroy()
     }

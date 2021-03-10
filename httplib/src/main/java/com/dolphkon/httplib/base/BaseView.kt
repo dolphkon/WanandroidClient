@@ -1,6 +1,6 @@
 package com.dolphkon.httplib.base
 
-interface BaseView<T> {
+interface BaseView {
     fun showLoading()
     fun showLoading(msg: String?)
     fun showLoading(msgId: Int)

@@ -1,15 +1,14 @@
 package com.dolphkon.httpClient.ui
 
 import android.content.Context
-import com.dolphkon.httplib.base.BasePresenter
 import com.dolphkon.httplib.base.ShowLoadingTramsformer
 import com.dolphkon.httplib.consumer.CommonObserver
 import com.dolphkon.httplib.utils.RxHelper
 import com.dolphkon.httpClient.bean.RegisterResp
 import com.dolphkon.httpClient.net.RetrofitClient
 import com.dolphkon.httpClient.ui.LoginContract.Presenter
-import com.dolphkon.httplib.utils.LogUtil
 import com.dolphkon.httplib.utils.toast
+import com.jlpay.merch.ui.base.CommonDisposable
 
 /**
  * ****************************************************
@@ -21,7 +20,7 @@ import com.dolphkon.httplib.utils.toast
  * Description:TODO
  * *****************************************************
  */
-class LoginPresenter(private val context: Context, private val view: LoginContract.View) : BasePresenter<LoginContract.View?>(), Presenter {
+class LoginPresenter(private val context: Context, private val view: LoginContract.View) : CommonDisposable(),Presenter {
 
     /**
      * 注册
@@ -30,6 +29,7 @@ class LoginPresenter(private val context: Context, private val view: LoginContra
         RetrofitClient.get().apiService
                 .register(account, password, repassword)
                 .compose(RxHelper.observableIO2Main(context))
+                .doOnSubscribe { it -> addDisposable(it) }
                 .compose(ShowLoadingTramsformer(view as Context))
                 .subscribe(
                         object : CommonObserver<RegisterResp>() {
@@ -37,7 +37,6 @@ class LoginPresenter(private val context: Context, private val view: LoginContra
                                 "注册成功".toast(context)
                                   view.updateRegisterView(data?.data)
                             }
-
                             override fun onError(msg: String?, code: String?) {
                                 msg?.toast(context)
                             }
@@ -50,6 +49,7 @@ class LoginPresenter(private val context: Context, private val view: LoginContra
     override fun login(account: String?, password: String?) {
         RetrofitClient.get().apiService
                 .login(account,password)
+                .doOnSubscribe { it -> addDisposable(it) }
                 .compose(RxHelper.observableIO2Main(context))
                 .compose(ShowLoadingTramsformer(view as Context))
                 .subscribe(

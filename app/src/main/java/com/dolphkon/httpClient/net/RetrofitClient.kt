@@ -54,4 +54,5 @@ class RetrofitClient private constructor() {
                 .build()
         apiService = create(ApiService::class.java)
     }
+
 }

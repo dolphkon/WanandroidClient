@@ -29,7 +29,7 @@ import java.lang.reflect.Type
  */
 abstract class CommonObserver<T> : Observer<ResponseBody>, NetCallBack<T> {
     override fun onSubscribe(d: Disposable) {
-        if (!HttplibManager.isNetworkAvailable(HttplibManager.getContext())) {
+        if (!HttplibManager.isNetworkAvailable(HttplibManager.context)) {
             val ex = RxException(ErrorCode.NETWORD_ERROR)
             ex.message = "网络不可用,请检查网络设置是否正常"
             onError(ex)

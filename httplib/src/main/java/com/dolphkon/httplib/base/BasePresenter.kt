@@ -1,12 +1,9 @@
 package com.dolphkon.httplib.base
 
-open class BasePresenter<V:BaseView<*>?> {
-    private var mRootView: V? = null
-    fun attachView(mRootView: V) {
-        this.mRootView = mRootView
-    }
+import io.reactivex.disposables.Disposable
 
-    fun detachView() {
-        mRootView = null
-    }
+
+interface BasePresenter {
+    fun addDisposable(subscription: Disposable?)
+    fun unDisposable()
 }
