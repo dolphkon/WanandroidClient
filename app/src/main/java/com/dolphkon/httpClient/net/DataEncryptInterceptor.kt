@@ -3,7 +3,6 @@ package com.dolphkon.httpClient.net
 import com.dolphkon.httplib.utils.LogUtil
 import okhttp3.FormBody
 import okhttp3.Interceptor
-import okhttp3.MediaType
 import okhttp3.Response
 import okio.Buffer
 import java.io.IOException
@@ -21,7 +20,6 @@ class DataEncryptInterceptor : Interceptor {
             oldBodyStr = requestBuffer.readUtf8()
             requestBuffer.close()
         }
-        val mediaType = MediaType.parse("application/json;charset=UTF-8")
         val method = request.method()
         if ("POST" == method) {
             val sb = StringBuilder()

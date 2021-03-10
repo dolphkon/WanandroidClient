@@ -18,7 +18,7 @@ import com.orhanobut.logger.PrettyFormatStrategy
  * *****************************************************
  */
 object HttplibManager {
-    var context: Context? = null
+    lateinit var context: Context
         private set
 
     @JvmStatic

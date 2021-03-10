@@ -22,7 +22,7 @@ interface ApiService {
      * 首页Banner
      */
     @GET("banner/json")
-    fun queryBanners(): Observable<ResponseBody?>?
+    fun queryBanners(): Observable<ResponseBody>
 
     /**
      * 注册

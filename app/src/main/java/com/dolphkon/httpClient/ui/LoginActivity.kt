@@ -1,7 +1,9 @@
 package com.dolphkon.httpClient.ui
 
+import android.content.Intent
 import android.text.TextUtils
 import android.view.View
+import com.dolphkon.httpClient.MainActivity
 import com.dolphkon.httpClient.R
 import com.dolphkon.httpClient.bean.RegisterResp
 import com.dolphkon.httpClient.ui.LoginContract.Presenter
@@ -19,7 +21,7 @@ import kotlinx.android.synthetic.main.activity_login.*
  * Description:TODO
  * *****************************************************
  */
-class LoginActivity : BaseMvpActivity<LoginContract.Presenter>(), LoginContract.View {
+class LoginActivity : BaseMvpActivity<Presenter>(), LoginContract.View {
     private var isLogin = true
     private var account: String? = null
     private var password: String? = null
@@ -95,6 +97,8 @@ class LoginActivity : BaseMvpActivity<LoginContract.Presenter>(), LoginContract.
     }
 
     override fun login() {
+        startActivity(Intent(this,MainActivity::class.java))
         "登陆成功".toast(this)
+        finish()
     }
 }
